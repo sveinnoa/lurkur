@@ -12,7 +12,6 @@
 #import "UIImageView+AFNetworking.h"
 #import <QuartzCore/QuartzCore.h>
 
-//static NSString *const BaseURLString = @"http://www.raywenderlich.com/downloads/weather_sample/";
 static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&type=obs&lang=en&view=xml&ids=";
 
 @interface FlickrCodeSnippedViewController ()
