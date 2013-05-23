@@ -12,12 +12,12 @@
 		FEB6C88C1743A6320034559F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEB6C88B1743A6320034559F /* CoreGraphics.framework */; };
 		FEB6C8921743A6320034559F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEB6C8901743A6320034559F /* InfoPlist.strings */; };
 		FEB6C8941743A6320034559F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8931743A6320034559F /* main.m */; };
-		FEB6C8981743A6320034559F /* FlickrCodeSnippedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8971743A6320034559F /* FlickrCodeSnippedAppDelegate.m */; };
+		FEB6C8981743A6320034559F /* WeatherAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8971743A6320034559F /* WeatherAppDelegate.m */; };
 		FEB6C89A1743A6320034559F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB6C8991743A6320034559F /* Default.png */; };
 		FEB6C89C1743A6320034559F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB6C89B1743A6320034559F /* Default@2x.png */; };
 		FEB6C89E1743A6320034559F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FEB6C89D1743A6320034559F /* Default-568h@2x.png */; };
 		FEB6C8A11743A6320034559F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEB6C89F1743A6320034559F /* MainStoryboard.storyboard */; };
-		FEB6C8A41743A6320034559F /* FlickrCodeSnippedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8A31743A6320034559F /* FlickrCodeSnippedViewController.m */; };
+		FEB6C8A41743A6320034559F /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8A31743A6320034559F /* WeatherViewController.m */; };
 		FEB6C8BE1743F7870034559F /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8AC1743F7870034559F /* AFHTTPClient.m */; };
 		FEB6C8BF1743F7870034559F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8AE1743F7870034559F /* AFHTTPRequestOperation.m */; };
 		FEB6C8C01743F7870034559F /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8B01743F7870034559F /* AFImageRequestOperation.m */; };
@@ -38,14 +38,14 @@
 		FEB6C8911743A6320034559F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FEB6C8931743A6320034559F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FEB6C8951743A6320034559F /* WeatherReport-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherReport-Prefix.pch"; sourceTree = "<group>"; };
-		FEB6C8961743A6320034559F /* FlickrCodeSnippedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickrCodeSnippedAppDelegate.h; sourceTree = "<group>"; };
-		FEB6C8971743A6320034559F /* FlickrCodeSnippedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrCodeSnippedAppDelegate.m; sourceTree = "<group>"; };
+		FEB6C8961743A6320034559F /* WeatherAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherAppDelegate.h; sourceTree = "<group>"; };
+		FEB6C8971743A6320034559F /* WeatherAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherAppDelegate.m; sourceTree = "<group>"; };
 		FEB6C8991743A6320034559F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		FEB6C89B1743A6320034559F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		FEB6C89D1743A6320034559F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		FEB6C8A01743A6320034559F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		FEB6C8A21743A6320034559F /* FlickrCodeSnippedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlickrCodeSnippedViewController.h; sourceTree = "<group>"; };
-		FEB6C8A31743A6320034559F /* FlickrCodeSnippedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlickrCodeSnippedViewController.m; sourceTree = "<group>"; };
+		FEB6C8A21743A6320034559F /* WeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
+		FEB6C8A31743A6320034559F /* WeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
 		FEB6C8AB1743F7870034559F /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		FEB6C8AC1743F7870034559F /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		FEB6C8AD1743F7870034559F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -112,11 +112,11 @@
 		FEB6C88D1743A6320034559F /* WeatherReport */ = {
 			isa = PBXGroup;
 			children = (
-				FEB6C8961743A6320034559F /* FlickrCodeSnippedAppDelegate.h */,
-				FEB6C8971743A6320034559F /* FlickrCodeSnippedAppDelegate.m */,
+				FEB6C8961743A6320034559F /* WeatherAppDelegate.h */,
+				FEB6C8971743A6320034559F /* WeatherAppDelegate.m */,
 				FEB6C89F1743A6320034559F /* MainStoryboard.storyboard */,
-				FEB6C8A21743A6320034559F /* FlickrCodeSnippedViewController.h */,
-				FEB6C8A31743A6320034559F /* FlickrCodeSnippedViewController.m */,
+				FEB6C8A21743A6320034559F /* WeatherViewController.h */,
+				FEB6C8A31743A6320034559F /* WeatherViewController.m */,
 				FEB6C88E1743A6320034559F /* Supporting Files */,
 			);
 			name = WeatherReport;
@@ -231,8 +231,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEB6C8941743A6320034559F /* main.m in Sources */,
-				FEB6C8981743A6320034559F /* FlickrCodeSnippedAppDelegate.m in Sources */,
-				FEB6C8A41743A6320034559F /* FlickrCodeSnippedViewController.m in Sources */,
+				FEB6C8981743A6320034559F /* WeatherAppDelegate.m in Sources */,
+				FEB6C8A41743A6320034559F /* WeatherViewController.m in Sources */,
 				FEB6C8BE1743F7870034559F /* AFHTTPClient.m in Sources */,
 				FEB6C8BF1743F7870034559F /* AFHTTPRequestOperation.m in Sources */,
 				FEB6C8C01743F7870034559F /* AFImageRequestOperation.m in Sources */,

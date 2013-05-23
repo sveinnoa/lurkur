@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "FlickrCodeSnippedAppDelegate.h"
+#import "WeatherAppDelegate.h"
 
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([FlickrCodeSnippedAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([WeatherAppDelegate class]));
     }
 }
