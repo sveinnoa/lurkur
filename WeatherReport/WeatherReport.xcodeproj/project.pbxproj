@@ -82,19 +82,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E28ED18174E39FA00E5D127 /* WeatherReport */ = {
+		6E0C4C7B174E48BD002C770A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				6E28ED19174E39FA00E5D127 /* Default-568h@2x.png */,
 				6E28ED1A174E39FA00E5D127 /* Default.png */,
 				6E28ED1B174E39FA00E5D127 /* Default@2x.png */,
 				6E28ED1C174E39FA00E5D127 /* InfoPlist.strings */,
-				6E28ED1E174E39FA00E5D127 /* MainStoryboard.storyboard */,
 				6E28ED20174E39FA00E5D127 /* main.m */,
-				6E28ED21174E39FA00E5D127 /* WeatherAppDelegate.h */,
-				6E28ED22174E39FA00E5D127 /* WeatherAppDelegate.m */,
 				6E28ED23174E39FA00E5D127 /* WeatherReport-Info.plist */,
 				6E28ED24174E39FA00E5D127 /* WeatherReport-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6E28ED18174E39FA00E5D127 /* WeatherReport */ = {
+			isa = PBXGroup;
+			children = (
+				6E0C4C7B174E48BD002C770A /* Supporting Files */,
+				6E28ED1E174E39FA00E5D127 /* MainStoryboard.storyboard */,
+				6E28ED21174E39FA00E5D127 /* WeatherAppDelegate.h */,
+				6E28ED22174E39FA00E5D127 /* WeatherAppDelegate.m */,
 				6E28ED25174E39FA00E5D127 /* WeatherViewController.h */,
 				6E28ED26174E39FA00E5D127 /* WeatherViewController.m */,
 			);
