@@ -47,12 +47,13 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 	// Do any additional setup after loading the view, typically from a nib.
     queue = [[NSOperationQueue alloc] init];
     NSString *const FlickrAPIKey = @"b5daebf7a95fb8c7a57145848dbc127d";
-    NSString *tags = @"iceland landscape";
+//    NSString *tags = @"iceland landscape";
+    NSString *tags = @"reykjavik";
     NSString *escapeTags = [tags stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSString *urlString =
     [NSString stringWithFormat:
-     @"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=20&format=json&nojsoncallback=1",
+     @"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=20&format=json&nojsoncallback=1&group_id=29722852@N00",
      FlickrAPIKey, escapeTags];
     NSLog(@"%@", urlString);
     // Create NSURL string from formatted string
