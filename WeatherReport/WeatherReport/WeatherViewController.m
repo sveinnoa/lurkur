@@ -37,6 +37,8 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     BOOL isLoading;
     NSString *photoURLString;
     NSString *photoTitle;
+    NSInteger numberOfViews;
+    NSMutableArray *tmpURLs;
 }
 @synthesize weatherArtImage = _weatherArtImage;
 
@@ -45,6 +47,10 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // number f views / pages
+    numberOfViews = 6;
+    
     queue = [[NSOperationQueue alloc] init];
     NSString *const FlickrAPIKey = @"b5daebf7a95fb8c7a57145848dbc127d";
 //    NSString *tags = @"iceland landscape";
@@ -68,6 +74,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                              
                                              [self parseDictionary:JSON];
+                                             [self parseDictionaryToArray:JSON];
                                              isLoading = NO;
                                              dispatch_async(dispatch_get_main_queue(), ^{
                                                  [self.view setNeedsDisplay];
@@ -249,6 +256,18 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 
 }
 
+- (void)parseDictionaryToArray:(NSDictionary *)dictionary
+{
+    NSArray *photos = [[dictionary objectForKey:@"photos"] objectForKey:@"photo"];
+    for (NSInteger i = 0; i < numberOfViews; i++) {
+        NSDictionary *p = photos[i+15];
+        NSString *tmpStr;
+        tmpStr = [NSString stringWithFormat:@"http://farm%@.static.flickr.com/%@/%@_%@_b.jpg", [p objectForKey:@"farm"], [p objectForKey:@"server"], [p objectForKey:@"id"], [p objectForKey:@"secret"]];
+        [tmpURLs addObject:tmpStr];
+    }
+    
+    //[self setup];
+}
 
 - (void)didReceiveMemoryWarning
 {
