@@ -51,6 +51,9 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     // number f views / pages
     numberOfViews = 6;
     
+    // array for urls, need to fix name and maybe change to dict
+    tmpURLs = [[NSMutableArray alloc] init];
+    
     queue = [[NSOperationQueue alloc] init];
     NSString *const FlickrAPIKey = @"b5daebf7a95fb8c7a57145848dbc127d";
 //    NSString *tags = @"iceland landscape";
@@ -59,7 +62,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     
     NSString *urlString =
     [NSString stringWithFormat:
-     @"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=20&format=json&nojsoncallback=1&group_id=29722852@N00",
+     @"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&per_page=40&format=json&nojsoncallback=1&group_id=29722852@N00",
      FlickrAPIKey, escapeTags];
     NSLog(@"%@", urlString);
     // Create NSURL string from formatted string
