@@ -147,9 +147,11 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         CGFloat xOrigin = i * self.view.frame.size.width;
         //UIView *
         containerView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.view.frame.size.width, self.view.frame.size.height)];
-                
+        
+        
         //UIImageView *artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        //artImageView.contentMode = UIViewContentModeScaleAspectFill;
         [artImageView setImageWithURL:[NSURL URLWithString:tmpURLs[i]]];
         
         // is not working and tell me why??
@@ -169,7 +171,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         //UIImage *endImage = [[UIImage alloc] initWithCIImage:outputImage]; //resultImage
         [artImageView setImage:endImage];
         // why is above not working??
-        
+
         
         [containerView addSubview:artImageView];
                     // trying second scrollview
@@ -342,9 +344,9 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     NSString *tempature = [observation objectForKey:@"T"];
 //    NSString *observationTempature = [NSString stringWithFormat:@"%1.0f°", [tempature doubleValue]];
     NSString *observationTempature = [NSString stringWithFormat:@"%d°", [tempature integerValue]];
-    
+  
     // add some text for testing transparant label on top of image view
-    UILabel *textLabel = [[UILabel alloc] init];
+    /*UILabel *textLabel = [[UILabel alloc] init];
     [textLabel setFrame:CGRectMake(20, 310, 280, 72)];
     textLabel.textColor = [UIColor whiteColor];
     textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:(72.0)];
@@ -367,7 +369,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     textLabel2.layer.shadowRadius = 0.0;
     textLabel2.layer.shadowColor = [UIColor blackColor].CGColor;
     textLabel2.layer.shadowOffset = CGSizeMake(0.0, -1.0);
-    textLabel2.text = [NSString stringWithFormat:@"%@\n%@", stationName, observationTime];
+    textLabel2.text = [NSString stringWithFormat:@"%@\n%@", stationName, observationTime];*/
 /*
     UILabel *textLabel3 = [[UILabel alloc] init];
     [textLabel3 setFrame:CGRectMake(20, 20, 280, 6)];
@@ -381,8 +383,8 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     textLabel3.layer.shadowOffset = CGSizeMake(0.0, -1.0);
     textLabel3.text = photoTitle;
 */
-    [[self view] addSubview:textLabel];
-    [[self view] addSubview:textLabel2];
+    //[[self view] addSubview:textLabel];
+    //[[self view] addSubview:textLabel2];
 //    [[self view] addSubview:textLabel3];
     
     // adding to weather dictionary
