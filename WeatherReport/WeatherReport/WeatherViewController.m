@@ -41,7 +41,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     NSInteger numberOfViews;
     NSMutableArray *tmpURLs;
     UIScrollView *scroll;
-    UIImageView *artImageView;
+    //UIImageView *artImageView;
     UIView *containerView;
 }
 @synthesize weatherArtImage = _weatherArtImage;
@@ -150,32 +150,17 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         
         
         //UIImageView *artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        //artImageView.contentMode = UIViewContentModeScaleAspectFill;
+        UIImageView *artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        artImageView.contentMode = UIViewContentModeScaleAspectFill;
+        containerView.clipsToBounds = YES;
         [artImageView setImageWithURL:[NSURL URLWithString:tmpURLs[i]]];
-        
-        // is not working and tell me why??
-        CIImage *imageToBlur = [CIImage imageWithCGImage:artImageView.image.CGImage];
-        //artImageView = nil;
-        //CIFilter *blurEffect = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:kCIInputImageKey,imageToBlur,@"inputRadius",[NSNumber numberWithFloat:0.0],nil];
-        CIContext *context = [CIContext contextWithOptions:nil];
-        CIFilter *blurEffect = [CIFilter filterWithName:@"CISepiaTone"
-                                          keysAndValues: kCIInputImageKey, imageToBlur,
-                                @"inputIntensity", [NSNumber numberWithFloat:0.5], nil];
-        
-        CIImage *outputImage = [blurEffect outputImage];
-        
-        CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
-        UIImage *endImage = [UIImage imageWithCGImage:cgimg];
-        //CIImage *resultImage = [blurEffect valueForKey:@"outputImage"];
-        //UIImage *endImage = [[UIImage alloc] initWithCIImage:outputImage]; //resultImage
-        [artImageView setImage:endImage];
-        // why is above not working??
-
         
         [containerView addSubview:artImageView];
                     // trying second scrollview
         UIScrollView *scroll1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        
+        scroll1.tag = i;
+        artImageView.tag = i+100;
         
         [scroll1 setScrollEnabled:YES];
         //scroll1.pagingEnabled = YES;
@@ -416,15 +401,63 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         //NSLog(@"scrollViewDidScroll: is this correct scroll?");
         //NSLog(@"%f", scrollView.contentOffset.y);
         //if (!((int)scrollView.contentOffset.y % 10)) {
-        if (scrollView.contentOffset.y > 100) {
+        NSInteger tag = scrollView.tag;
+        UIImageView *artImageView = (UIImageView *)[scrollView viewWithTag:tag+100];
+        
+//        UIImageView *artImageView = [UIImageView alloc];
+  //      for(UIView *view in scrollView.subviews) {
+    //        if([view isKindOfClass:[UIImageView class]]) {
+      //          if (view.tag == tag) {
+        //            artImageView = view;
+          //      }
+            //}
+       // }
+        
+        
+        if (scrollView.contentOffset.y > 140) {
             NSLog(@"into control if: %f", scrollView.contentOffset.y);
-            CIImage *imageToBlur = [CIImage imageWithCGImage:artImageView.image.CGImage];
-            //CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"];
-            CIFilter *blurEffect = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:kCIInputImageKey,imageToBlur,@"inputRadius",[NSNumber numberWithFloat:1.0],nil];
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.8f];
+            artImageView.layer.opacity = 0.2;
+        } else if (scrollView.contentOffset.y > 130) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7f];
+            artImageView.layer.opacity = 0.3;
+        } else if (scrollView.contentOffset.y > 120) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6f];
+            artImageView.layer.opacity = 0.4;
+        } else if (scrollView.contentOffset.y > 110) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+            artImageView.layer.opacity = 0.5;
+        } else if (scrollView.contentOffset.y > 100) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.4f];
+            artImageView.layer.opacity = 0.6;
+        } else if (scrollView.contentOffset.y > 90) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3f];
+            artImageView.layer.opacity = 0.7;
+        } else if (scrollView.contentOffset.y > 80) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2f];
+            artImageView.layer.opacity = 0.8;
+        } else if (scrollView.contentOffset.y > 70) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1f];
+            artImageView.layer.opacity = 0.9;
+        } else if (scrollView.contentOffset.y > 60) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0f];
+            artImageView.layer.opacity = 1.0;
+        }
+            /*CIImage *imageToBlur = [CIImage imageWithCGImage:artImageView.image.CGImage];
+            CIFilter *blurEffect = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:kCIInputImageKey,imageToBlur,@"inputRadius",[NSNumber numberWithFloat:0.5],nil];
             CIImage *resultImage = [blurEffect valueForKey:@"outputImage"];
             UIImage *endImage = [[UIImage alloc] initWithCIImage:resultImage];
             [artImageView setImage:endImage];
-            [artImageView setNeedsDisplay];
+            */
+            //[artImageView setNeedsDisplay];
             
             //Blur the UIImage
             //CIImage *imageToBlur = [CIImage imageWithCGImage:viewImage.CGImage];
@@ -433,7 +466,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
             //[gaussianBlurFilter setValue:[NSNumber numberWithFloat: 10] forKey: @"inputRadius"];
             //CIImage *resultImage = [gaussianBlurFilter valueForKey: @"outputImage"];
             //UIImage *endImage = [[UIImage alloc] initWithCIImage:resultImage];
-        }
+        //}
     } 
 }
 
