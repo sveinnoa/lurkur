@@ -408,6 +408,35 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     //[self setup];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // This filter shit is not working
+    if (scrollView != scroll) {
+        // Working
+        //NSLog(@"scrollViewDidScroll: is this correct scroll?");
+        //NSLog(@"%f", scrollView.contentOffset.y);
+        //if (!((int)scrollView.contentOffset.y % 10)) {
+        if (scrollView.contentOffset.y > 100) {
+            NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            CIImage *imageToBlur = [CIImage imageWithCGImage:artImageView.image.CGImage];
+            //CIFilter *blur = [CIFilter filterWithName:@"CIGaussianBlur"];
+            CIFilter *blurEffect = [CIFilter filterWithName:@"CIGaussianBlur" keysAndValues:kCIInputImageKey,imageToBlur,@"inputRadius",[NSNumber numberWithFloat:1.0],nil];
+            CIImage *resultImage = [blurEffect valueForKey:@"outputImage"];
+            UIImage *endImage = [[UIImage alloc] initWithCIImage:resultImage];
+            [artImageView setImage:endImage];
+            [artImageView setNeedsDisplay];
+            
+            //Blur the UIImage
+            //CIImage *imageToBlur = [CIImage imageWithCGImage:viewImage.CGImage];
+            //CIFilter *gaussianBlurFilter = [CIFilter filterWithName: @"CIGaussianBlur"];
+            //[gaussianBlurFilter setValue:imageToBlur forKey: @"inputImage"];
+            //[gaussianBlurFilter setValue:[NSNumber numberWithFloat: 10] forKey: @"inputRadius"];
+            //CIImage *resultImage = [gaussianBlurFilter valueForKey: @"outputImage"];
+            //UIImage *endImage = [[UIImage alloc] initWithCIImage:resultImage];
+        }
+    } 
+}
+
 
 - (void)didReceiveMemoryWarning
 {
