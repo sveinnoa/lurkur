@@ -147,10 +147,13 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         CGFloat xOrigin = i * self.view.frame.size.width;
         //UIView *
         containerView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        containerView.clipsToBounds = YES;
         
         
         //UIImageView *artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         artImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        artImageView.contentMode = UIViewContentModeScaleAspectFill;
+
         //artImageView.contentMode = UIViewContentModeScaleAspectFill;
         [artImageView setImageWithURL:[NSURL URLWithString:tmpURLs[i]]];
         
