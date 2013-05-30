@@ -28,6 +28,7 @@
 		FEB6C8C41743F7870034559F /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8B91743F7870034559F /* AFURLConnectionOperation.m */; };
 		FEB6C8C51743F7870034559F /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8BB1743F7870034559F /* AFXMLRequestOperation.m */; };
 		FEB6C8C61743F7870034559F /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB6C8BD1743F7870034559F /* UIImageView+AFNetworking.m */; };
+		FED919671756C82000D67392 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED919661756C82000D67392 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		FEB6C8BB1743F7870034559F /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
 		FEB6C8BC1743F7870034559F /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
 		FEB6C8BD1743F7870034559F /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		FED919661756C82000D67392 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED919671756C82000D67392 /* CoreImage.framework in Frameworks */,
 				FEB6C8881743A6320034559F /* UIKit.framework in Frameworks */,
 				FEB6C88A1743A6320034559F /* Foundation.framework in Frameworks */,
 				FEB6C88C1743A6320034559F /* CoreGraphics.framework in Frameworks */,
@@ -112,6 +115,7 @@
 		FEB6C87B1743A6320034559F = {
 			isa = PBXGroup;
 			children = (
+				FED919661756C82000D67392 /* CoreImage.framework */,
 				6E28ED18174E39FA00E5D127 /* WeatherReport */,
 				FEB6C8AA1743F7870034559F /* AFNetworking */,
 				FEB6C8861743A6320034559F /* Frameworks */,

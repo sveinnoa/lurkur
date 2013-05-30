@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WeatherViewController : UIViewController <NSURLConnectionDelegate, NSXMLParserDelegate>
+@interface WeatherViewController : UIViewController <NSURLConnectionDelegate, NSXMLParserDelegate,UIScrollViewDelegate>
 @end
