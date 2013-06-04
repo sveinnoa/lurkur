@@ -155,6 +155,9 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         artImageView.contentMode = UIViewContentModeScaleAspectFill;
         containerView.clipsToBounds = YES;
         [artImageView setImageWithURL:[NSURL URLWithString:tmpURLs[i]]];
+        [artImageView.layer setBorderColor:[[UIColor blackColor] CGColor]];
+        [artImageView.layer setBorderWidth:1.0];
+        [artImageView.layer setCornerRadius:2.0];
         
         [containerView addSubview:artImageView];
                     // trying second scrollview
@@ -451,7 +454,9 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
             artImageView.layer.opacity = 0.9;
         } else if (scrollView.contentOffset.y > 60) {
             NSLog(@"into control if: %f", scrollView.contentOffset.y);
+            
             scrollView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.0f];
+            
             artImageView.layer.opacity = 1.0;
         }
             /*CIImage *imageToBlur = [CIImage imageWithCGImage:artImageView.image.CGImage];
