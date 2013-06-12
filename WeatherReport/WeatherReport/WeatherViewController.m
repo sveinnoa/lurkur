@@ -13,10 +13,15 @@
 #import <QuartzCore/QuartzCore.h>
 
 static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&type=obs&lang=en&view=xml&ids=";
+//static CGFloat *const floatBarHeight = 40.0;
 
 @interface WeatherViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *weatherArtImage;
 
+
+
+
+@property (nonatomic,strong) UIRefreshControl *refreshControl;
 @property(strong) NSMutableDictionary *weather;
 @property(strong) NSMutableArray *favoriteStations;
 @property(strong) NSMutableDictionary *xmlWeather; //package containing the complete response
@@ -24,6 +29,8 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 @property(strong) NSString *previousElementName;
 @property(strong) NSString *elementName;
 @property(strong) NSMutableString *outstring;
+@property (nonatomic) CGFloat barHeight;
+@property (nonatomic) CGFloat lastOffset;
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict;
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
@@ -43,6 +50,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     UIScrollView *scroll;
     //UIImageView *artImageView;
     UIView *containerView;
+    CGFloat *lastOffset;
 }
 @synthesize weatherArtImage = _weatherArtImage;
 
@@ -52,6 +60,12 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    //UINavigationItem* item = [[UINavigationItem alloc] initWithTitle:@"title text"];
+    
+    //[self.navigationBar pushNavigationItem:item animated:YES];
+    
+    
+    self.barHeight = 20.0;
     // number f views / pages
     numberOfViews = 7;
     
@@ -60,6 +74,10 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     self.favoriteStations = [[NSMutableArray alloc] initWithCapacity:5];
     
     queue = [[NSOperationQueue alloc] init];
+    [self updateData];
+}
+- (void)updateData
+{
     NSString *const FlickrAPIKey = @"b5daebf7a95fb8c7a57145848dbc127d";
 //    NSString *tags = @"iceland landscape";
     NSString *tags = @"reykjavik";
@@ -139,12 +157,26 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     [scroll setScrollEnabled:YES];
     scroll.pagingEnabled = YES;
     
+    
+    
+    
     //[filtersScrollView setShowsVerticalScrollIndicator:NO];
     scroll.showsVerticalScrollIndicator = NO;
     scroll.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scroll];
     for (int i= 0; i < numberOfViews; i++) {
+
+
+        
         CGFloat xOrigin = i * self.view.frame.size.width;
+        NSDictionary *weather = [self.favoriteStations objectAtIndex:i];
+        NSString *stationName = [weather objectForKey:@"name"];
+        // get date
+        NSString *observationTime = [weather objectForKey:@"time"];
+        // get temp
+        NSString *tempature = [weather objectForKey:@"tempature"];
+         
+        
         //UIView *
         containerView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.view.frame.size.width, self.view.frame.size.height)];
         containerView.clipsToBounds = YES;
@@ -160,6 +192,30 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         [artImageView.layer setCornerRadius:2.0];
         
         [containerView addSubview:artImageView];
+        
+        //Experiment Zero
+        UIView *bar = [[UIView alloc] initWithFrame:CGRectMake(0, 0 , self.view.frame.size.width, self.barHeight)];
+        bar.backgroundColor = [UIColor clearColor];
+        //bar.backgroundColor = [UIColor blackColor];
+        //bar.clipsToBounds = YES;
+        bar.tag = i+200;
+        UILabel *barTextLabel = [[UILabel alloc] init];
+        barTextLabel.tag = i+300;
+        [barTextLabel setFrame:CGRectMake(self.view.frame.size.width/2 - 80, 2, bar.frame.size.width/2 + 40, 16)];
+        barTextLabel.textColor = [UIColor whiteColor];
+        barTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:(14.0)];
+        barTextLabel.textAlignment = NSTextAlignmentCenter;
+        barTextLabel.backgroundColor = [UIColor clearColor];
+        barTextLabel.layer.shadowOpacity = 1.0;
+        barTextLabel.layer.shadowRadius = 0.0;
+        barTextLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+        barTextLabel.layer.shadowOffset = CGSizeMake(0.0, -1.0);
+        barTextLabel.text = [NSString stringWithFormat:@"%@\n%@", stationName, observationTime]; //@"Place and timestamp";
+        
+        [bar addSubview:barTextLabel];
+
+        
+        
                     // trying second scrollview
         UIScrollView *scroll1 = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         
@@ -175,12 +231,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         scroll1.delegate = self;
         //UILabel *tmpLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, scroll1.frame.size.width, 80)];
         
-        NSDictionary *weather = [self.favoriteStations objectAtIndex:i];
-        NSString *stationName = [weather objectForKey:@"name"];
-        // get date
-        NSString *observationTime = [weather objectForKey:@"time"];
-        // get temp
-        NSString *tempature = [weather objectForKey:@"tempature"];
+        
         //    NSString *observationTempature = [NSString stringWithFormat:@"%1.0f°", [tempature doubleValue]];
         UILabel *textLabel = [[UILabel alloc] init];
         [textLabel setFrame:CGRectMake(20, 310, 280, 72)];
@@ -207,10 +258,17 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         textLabel2.layer.shadowOffset = CGSizeMake(0.0, -1.0);
         textLabel2.text = [NSString stringWithFormat:@"%@\n%@", stationName, observationTime];
         
-        
+        //make refresh
+        //UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+        self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+        //[self.scrollView addSubview:refreshControl];
+        [scroll1 addSubview:self.refreshControl];
+
         [scroll1 addSubview:textLabel];
         [scroll1 addSubview:textLabel2];
         
+        [containerView addSubview:bar];
         [containerView addSubview:scroll1];
         scroll1.contentSize = CGSizeMake(scroll1.frame.size.width, scroll1.frame.size.height * 2);
         [scroll addSubview:containerView];
@@ -219,7 +277,13 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     //[scroll setContentSize:CGSizeMake(400, 900)];
     scroll.contentSize = CGSizeMake(self.view.frame.size.width * numberOfViews, self.view.frame.size.height);
 }
-
+        
+- (void)handleRefresh:(UIRefreshControl *)sender
+{
+    NSLog(@"Need to do something, refresh");
+    [self updateData];
+    [sender endRefreshing];
+}
 
 - (void)parseDictionary:(NSDictionary *)dictionary
 {
@@ -399,24 +463,29 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    // This filter shit is not working
+
     if (scrollView != scroll) {
+       NSInteger tag = scrollView.tag;
+        //Experiment 2
+        UIView *bar = (UIView *)[scrollView viewWithTag:tag+200];
+        
+        CGFloat offsetChange = self.lastOffset - scrollView.contentOffset.y;
+        CGRect f = bar.frame;
+        f.origin.y += offsetChange;
+        if (f.origin.y < -self.barHeight) f.origin.y = -self.barHeight;
+        if (f.origin.y > 0) f.origin.y = 0;
+        //if (scrollView.contentOffset.y <= 0) f.origin.y = 0;
+        //if (scrollView.contentOffset.y + scrollView.bounds.size.height >= scrollView.contentSize.height) f.origin.y = -self.barHeight;
+        bar.frame = f;
+        
+        self.lastOffset = scrollView.contentOffset.y;
+        
         // Working
         //NSLog(@"scrollViewDidScroll: is this correct scroll?");
         //NSLog(@"%f", scrollView.contentOffset.y);
         //if (!((int)scrollView.contentOffset.y % 10)) {
-        NSInteger tag = scrollView.tag;
+        
         UIImageView *artImageView = (UIImageView *)[scrollView viewWithTag:tag+100];
-        
-//        UIImageView *artImageView = [UIImageView alloc];
-  //      for(UIView *view in scrollView.subviews) {
-    //        if([view isKindOfClass:[UIImageView class]]) {
-      //          if (view.tag == tag) {
-        //            artImageView = view;
-          //      }
-            //}
-       // }
-        
         
         if (scrollView.contentOffset.y > 140) {
             NSLog(@"into control if: %f", scrollView.contentOffset.y);
