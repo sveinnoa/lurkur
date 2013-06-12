@@ -178,7 +178,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
          
         
         //UIView *
-        containerView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        containerView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin+10, 10, self.view.frame.size.width-10, self.view.frame.size.height-10)];
         containerView.clipsToBounds = YES;
         
         
@@ -236,6 +236,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         UILabel *textLabel = [[UILabel alloc] init];
         [textLabel setFrame:CGRectMake(20, 310, 280, 72)];
         textLabel.textColor = [UIColor whiteColor];
+//        textLabel.font = [UIFont fontWithName:@"Avenir-Light" size:(72.0)];
         textLabel.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:(72.0)];
         textLabel.textAlignment = NSTextAlignmentLeft;
         textLabel.backgroundColor = [UIColor clearColor];
@@ -248,6 +249,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
         UILabel *textLabel2 = [[UILabel alloc] init];
         [textLabel2 setFrame:CGRectMake(20, 390, 280, 50)];
         textLabel2.textColor = [UIColor whiteColor];
+//        textLabel2.font = [UIFont fontWithName:@"Avenir-Light" size:(18.0)];
         textLabel2.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:(18.0)];
         textLabel2.textAlignment = NSTextAlignmentLeft;
         textLabel2.numberOfLines = 0;
