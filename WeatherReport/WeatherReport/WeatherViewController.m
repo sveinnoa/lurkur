@@ -117,7 +117,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
     //operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     [queue addOperation:operation];
  
-    // hardcode Reykjavik and Holmavik
+    // hardcode Reykjavik and Holmavik and some others
     NSString *weatherUrlStr = [NSString stringWithFormat:@"%@1;2481;2642;422;571;705;798",BaseURLString];
     NSLog(@"%@", weatherUrlStr);
     NSURL *weatherUrl = [NSURL URLWithString:weatherUrlStr];
@@ -283,6 +283,7 @@ static NSString *const BaseURLString = @"http://xmlweather.vedur.is/?op_w=xml&ty
 - (void)handleRefresh:(UIRefreshControl *)sender
 {
     NSLog(@"Need to do something, refresh");
+    // TODO : updateData calls setup of UI instead of refresh/replace
     [self updateData];
     [sender endRefreshing];
 }
